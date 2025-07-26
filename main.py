@@ -36,6 +36,8 @@ sheet.title = "MAIN SHEET"
 cellRange_Name = sheet["C3":"C55"]
 cellRange_completePercentage = sheet["H3":"H55"]
 
+xlsxTime = sheet["A1"].value
+print(xlsxTime)
 
 def getData(cellRange):
     Data = []
@@ -66,7 +68,8 @@ formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 # 以markdown形式输出结果
 with open(OUTPUT_DIR, "w") as file:
     index_ = 0
-    file.write("# " + formatted_time + "\n")
+    file.write("# " + xlsxTime + "\n")
+    file.write("> "+"生成时间："+formatted_time+"\n")
     file.write("-------" + "\n" + "\n")
     file.write("|姓名|完成率|" + "\n")
     file.write("|:-----:|:-----:|" + "\n")
@@ -80,7 +83,7 @@ with open(OUTPUT_DIR, "w") as file:
     for a in unpassName:
         if unpassName == []:
             break
-        file.write("|" + unpassName[index_])
-        file.write("|" + unpassPer[index_] + "|" + "\n")
+        file.write("| ** " + unpassName[index_])
+        file.write(" ** | ** " + unpassPer[index_] + " ** |" + "\n")
         index_ += 1
     print("统计完成，结果已输出至：" + OUTPUT_DIR)
