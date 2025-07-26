@@ -21,14 +21,17 @@ while input_OK == False:
         INPUT_DIR= input("输入表格路径")
         inputWorkbook = load_workbook(INPUT_DIR)
         input_OK=True
+
     except InvalidFileException as error:
         print("Error:", error)
 sheet = inputWorkbook.active
 sheet.title = "MAIN SHEET"
 # 获取数据,名称和完成率
-
-cellRange_Name = sheet["C3":"C55"]
-cellRange_completePercentage = sheet["H3":"H55"]
+time.sleep(1)#防止input与报错冲突
+NOS = int(input("班级人数,按表格中人名总数填写"))+3#NumberOfStudents,班级人数
+NOS = str(NOS)
+cellRange_Name = sheet["C3":"C"+NOS]
+cellRange_completePercentage = sheet["H3":"H"+NOS]
 
 xlsxTime = sheet["A1"].value
 print(xlsxTime)
