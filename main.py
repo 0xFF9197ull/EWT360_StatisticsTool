@@ -6,12 +6,6 @@ from pycparser.c_ast import Return, While
 
 
 # 定义常量
-def getDictionary():
-    INPUT_DIR = input("输入表格路径")
-    OUTPUT_DIR = input("输出结果路径")
-    return INPUT_DIR, OUTPUT_DIR
-
-
 INPUT_DIR = ""
 OUTPUT_DIR = ""
 COMPLETE = 100
@@ -24,7 +18,7 @@ incompletePer = []
 input_OK = False
 while input_OK == False:
     try:
-        INPUT_DIR, OUTPUT_DIR = getDictionary()
+        INPUT_DIR= input("输入表格路径")
         inputWorkbook = load_workbook(INPUT_DIR)
         input_OK=True
     except InvalidFileException as error:
@@ -66,24 +60,31 @@ print("完成率小于60：", unpassName, "\n", unpassPer)
 
 formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 # 以markdown形式输出结果
-with open(OUTPUT_DIR, "w") as file:
-    index_ = 0
-    file.write("# " + xlsxTime + "\n")
-    file.write("> "+"生成时间："+formatted_time+"\n")
-    file.write("-------" + "\n" + "\n")
-    file.write("|姓名|完成率|" + "\n")
-    file.write("|:-----:|:-----:|" + "\n")
-    for a in incompleteName:
-        if incompleteName == []:
-            break
-        file.write("|" + incompleteName[index_])
-        file.write("|" + incompletePer[index_] + "|" + "\n")
-        index_ += 1
-    index_ = 0
-    for a in unpassName:
-        if unpassName == []:
-            break
-        file.write("| ** " + unpassName[index_])
-        file.write(" ** | ** " + unpassPer[index_] + " ** |" + "\n")
-        index_ += 1
-    print("统计完成，结果已输出至：" + OUTPUT_DIR)
+input_OK = False
+while input_OK == False:
+    try:
+        OUTPUT_DIR= input("输出结果路径")
+        with open(OUTPUT_DIR, "w") as file:
+            index_ = 0
+            file.write("# " + xlsxTime + "\n")
+            file.write("> " + "生成时间：" + formatted_time + "\n")
+            file.write("-------" + "\n" + "\n")
+            file.write("|姓名|完成率|" + "\n")
+            file.write("|:-----:|:-----:|" + "\n")
+            for a in incompleteName:
+                if incompleteName == []:
+                    break
+                file.write("|" + incompleteName[index_])
+                file.write("|" + incompletePer[index_] + "|" + "\n")
+                index_ += 1
+            index_ = 0
+            for a in unpassName:
+                if unpassName == []:
+                    break
+                file.write("| ** " + unpassName[index_])
+                file.write(" ** | ** " + unpassPer[index_] + " ** |" + "\n")
+                index_ += 1
+        input_OK=True
+    except Exception as error:
+        print("Error:", error)
+print("统计完成，结果已输出至：" + OUTPUT_DIR)
