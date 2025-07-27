@@ -5,6 +5,6 @@
  - 用来统计假期任务完成情况的（前提是你有ewt课代表的权限）。 ~~懒是推动人类进步的第一动力~~
  - Q:如何使用？
  -首先，你需要用pip安装openpyxl
- -'pip install openpyxl'
+ -`pip install openpyxl`
  - 单日统计要用到**main.py**。你需要先在ewt上下载情况报告的表格，然后导入，就可以生成一份*未完成名单.md*
 
