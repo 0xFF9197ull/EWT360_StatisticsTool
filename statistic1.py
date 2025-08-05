@@ -1,8 +1,6 @@
 from openpyxl import load_workbook
 import time
-
 from openpyxl.utils.exceptions import InvalidFileException
-from pycparser.c_ast import Return, While
 
 
 # 定义常量
@@ -16,6 +14,7 @@ unpassPer = []
 incompletePer = []
 # 准备工作表
 input_OK = False
+#尝试导入，出错后重新获取路径
 while input_OK == False:
     try:
         INPUT_DIR= input("输入表格路径")

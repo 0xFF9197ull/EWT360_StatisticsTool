@@ -1,8 +1,5 @@
 from openpyxl import load_workbook
 import time
-
-from openpyxl.descriptors.excel import Percentage
-from openpyxl.utils.exceptions import InvalidFileException
 from os import listdir
 
 '''
